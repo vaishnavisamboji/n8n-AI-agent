@@ -11,7 +11,7 @@ Given a question, analyze the provided documents and respond with the correct in
 * Use only the provided reference materials as the sole source of truth.
 * Do not infer, guess, or include outside information.
 * Responses must be **concise** but complete—include all relevant facts from the materials.
-* Format the output as a **simple list** (no bullets, no markdown).
+* Provide the full relevant sentence(s) exactly as written in the materials. Do not summarize or shorten.
 * If multiple facts apply, list them in separate lines.
 * If no relevant content is found, return only: `No information available`
 
