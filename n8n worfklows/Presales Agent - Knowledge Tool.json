@@ -1,0 +1,247 @@
+{
+  "name": "Presales Agent - Knowledge Tool",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "question"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0a5cd3c6-1242-467e-826d-e16458e47250",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $('When Executed by Another Workflow').item.json.question }}"
+            }
+          ]
+        },
+        "options": {
+          "systemMessage": "=**Role:**\nAn AI assistant for the “Tech Innovate 2026 Conference”\n\n**Goal:**\nAnswer attendee questions accurately using only the provided conference materials.\n\n**Task:**\nGiven a question, analyze the provided documents and respond with the correct information if available. If the information cannot be found in the provided materials, respond exactly with “No information available.”\n\n**Detail:**\n* Use only the provided reference materials as the sole source of truth.\n* Do not infer, guess, or include outside information.\n* Responses must be **concise** but complete—include all relevant facts from the materials.\n* Format the output as a **simple list** (no bullets, no markdown).\n* If multiple facts apply, list them in separate lines.\n* If no relevant content is found, return only: `No information available`\n\nAvailable Information:\n\n {{ $json.data }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        896,
+        0
+      ],
+      "id": "bd1a9f48-b910-4b31-ad37-d786798495a0",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "h4DC9uiR6yHiZlyz",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "tobiaszwingmann",
+          "mode": "list",
+          "cachedResultName": "tobiaszwingmann",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-agent-lil",
+          "mode": "list",
+          "cachedResultName": "n8n-agent-lil",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann/n8n-agent-lil"
+        },
+        "filePath": "tools/knowledge/docs"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "beb30035-b79a-43f4-b5c6-84b9bc177de4",
+      "name": "List files",
+      "webhookId": "3a4d206c-c0d8-446c-afcb-316990e27c19",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "rqkMAdMVwbOGDQB4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "tobiaszwingmann",
+          "mode": "list",
+          "cachedResultName": "tobiaszwingmann",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-agent-lil",
+          "mode": "list",
+          "cachedResultName": "n8n-agent-lil",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann/n8n-agent-lil"
+        },
+        "filePath": "={{ $json.path }}",
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "915aa335-6e13-4f6a-91ca-0acef656c64f",
+      "name": "Get a file",
+      "webhookId": "3a4d206c-c0d8-446c-afcb-316990e27c19",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "rqkMAdMVwbOGDQB4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "eb7063ee-d966-4147-8902-2dcec9c7520c",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e31e8e7-a731-41ad-892b-0fc77a1e06be",
+              "name": "response",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "9ea3edc8-b93d-4cdd-8c15-97023e4ec659",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "question": "What halls are available?"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "List files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List files": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b70bcbda-db38-43e5-a8c4-c07f26f6d8c8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "94e1edcc34a91a151fc2ec1b99597068a304e37fdb946fc806f00f97776fce3a"
+  },
+  "id": "eDjJbpZPwSyKvcHN",
+  "tags": []
+}

@@ -1,0 +1,398 @@
+{
+  "name": "Pre-Sales Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "conference_details",
+        "description": "Call this tool to request conference details, specific stand numbers and their current availability.",
+        "workflowId": {
+          "__rl": true,
+          "value": "eDjJbpZPwSyKvcHN",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/eDjJbpZPwSyKvcHN",
+          "cachedResultName": "Presales Agent - Knowledge Tool"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "question": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('question', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "question"
+          ],
+          "schema": [
+            {
+              "id": "question",
+              "displayName": "question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        256
+      ],
+      "id": "8cb16e9a-edd8-4788-a28f-e5d7048d5969",
+      "name": "Knowledge Tool"
+    },
+    {
+      "parameters": {
+        "name": "quote_file_generator",
+        "description": "Call this tool to create a quotation document and return a link to a quote file once all required information is gathered.\n\nRequired information:\n- type\n- size_sqft\n- price_per_sqft\n- registration_fee\n- subtotal\n- total\n- client_name\n- client_company\n- client_email\n- client_phone",
+        "workflowId": {
+          "__rl": true,
+          "value": "pWXusXvMjVJStwWE",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/pWXusXvMjVJStwWE",
+          "cachedResultName": "Presales Agent - Quote Tool"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "type": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('type', ``, 'string') }}",
+            "size_sqft": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('size_sqft', ``, 'number') }}",
+            "price_per_sqft": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('price_per_sqft', ``, 'number') }}",
+            "registration_fee": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('registration_fee', ``, 'number') }}",
+            "subtotal": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('subtotal', ``, 'number') }}",
+            "total": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('total', ``, 'number') }}",
+            "client_name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('client_name', ``, 'string') }}",
+            "client_company": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('client_company', ``, 'string') }}",
+            "client_email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('client_email', ``, 'string') }}",
+            "client_phone": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('client_phone', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "size_sqft",
+              "displayName": "size_sqft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            },
+            {
+              "id": "price_per_sqft",
+              "displayName": "price_per_sqft",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            },
+            {
+              "id": "registration_fee",
+              "displayName": "registration_fee",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            },
+            {
+              "id": "subtotal",
+              "displayName": "subtotal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            },
+            {
+              "id": "total",
+              "displayName": "total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            },
+            {
+              "id": "client_name",
+              "displayName": "client_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "client_company",
+              "displayName": "client_company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "client_email",
+              "displayName": "client_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "client_phone",
+              "displayName": "client_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        256
+      ],
+      "id": "8b45149f-f12f-4637-b5c8-ac5e5f9de814",
+      "name": "Quote Generator"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use this to store an email draft to a client so a sales agent can review it, or save a draft for a sales team member to follow up with the client personally.",
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "html",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To_Email', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        192,
+        256
+      ],
+      "id": "c03796c6-3fb1-4a3d-a600-ad0043537a9a",
+      "name": "Gmail",
+      "webhookId": "08e88046-78ad-4511-ae11-67b64edce61d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "0TjdgDYK5p303JDw",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Agent Response",
+        "height": 420,
+        "width": 840,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        -16
+      ],
+      "id": "ac7d2fe0-9d9b-4b42-bc69-152ecd5abfc3",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        256
+      ],
+      "id": "7304bcdb-458a-4957-9ea1-a7d7856c45e8",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "h4DC9uiR6yHiZlyz",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nThanks for your interest in Tech Innovate! How can I assist you today?",
+        "options": {
+          "customCss": ":root {\n  /* Brand-aligned palette (from template) */\n  --chat--color-primary: #0ea5e9;            /* brand sky blue */\n  --chat--color-primary-shade-50: #0284c7;   /* hover/darker */\n  --chat--color-primary-shade-100: #0369a1;  /* active/darkest */\n  --chat--color-secondary: #38bdf8;          /* lighter accent blue */\n  --chat--color-secondary-shade-50: #0ea5e9;\n  --chat--color-white: #ffffff;\n  --chat--color-light: #f8fafc;              /* light panel bg */\n  --chat--color-light-shade-50: #e5e7eb;     /* borders */\n  --chat--color-light-shade-100: #cbd5e1;    /* muted borders */\n  --chat--color-medium: #d1d5db;\n  --chat--color-dark: #1f2937;               /* primary text */\n  --chat--color-disabled: #e5e7eb;\n  --chat--color-typing: #6b7280;             /* muted text */\n\n  /* Base Layout (rounded like cards in template) */\n  --chat--spacing: 1rem;\n  --chat--border-radius: 0.75rem;            /* ≈12px */\n  --chat--transition-duration: 0.15s;\n  --chat--font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;\n\n  /* Window */\n  --chat--window--width: 400px;\n  --chat--window--height: 600px;\n  --chat--window--bottom: var(--chat--spacing);\n  --chat--window--right: var(--chat--spacing);\n  --chat--window--z-index: 9999;\n  --chat--window--border: 1px solid var(--chat--color-light-shade-50);\n  --chat--window--border-radius: var(--chat--border-radius);\n  --chat--window--margin-bottom: var(--chat--spacing);\n\n  /* Header (light, bordered—matches page header vibe) */\n  --chat--header-height: auto;\n  --chat--header--padding: var(--chat--spacing);\n  --chat--header--background: var(--chat--color-white);\n  --chat--header--color: var(--chat--color-dark);\n  --chat--header--border-top: none;\n  --chat--header--border-bottom: 1px solid var(--chat--color-light-shade-50);\n  --chat--header--border-left: none;\n  --chat--header--border-right: none;\n  --chat--heading--font-size: 1.125rem;      /* 18px, tidy */\n  --chat--subtitle--font-size: 0.875rem;\n  --chat--subtitle--line-height: 1.6;\n\n  /* Messages (white cards for bot, brand chips for user) */\n  --chat--message--font-size: 0.95rem;\n  --chat--message--padding: calc(var(--chat--spacing) * 0.85);\n  --chat--message--border-radius: var(--chat--border-radius);\n  --chat--message-line-height: 1.5;\n  --chat--message--margin-bottom: var(--chat--spacing);\n\n  --chat--message--bot--background: var(--chat--color-white);\n  --chat--message--bot--color: var(--chat--color-dark);\n  --chat--message--bot--border: 1px solid var(--chat--color-light-shade-50);\n\n  --chat--message--user--background: var(--chat--color-primary);\n  --chat--message--user--color: var(--chat--color-white);\n  --chat--message--user--border: none;\n\n  --chat--message--pre--background: #f3f4f6; /* subtle code bg */\n  --chat--messages-list--padding: var(--chat--spacing);\n\n  /* Toggle FAB (brand) */\n  --chat--toggle--size: 56px;\n  --chat--toggle--width: var(--chat--toggle--size);\n  --chat--toggle--height: var(--chat--toggle--size);\n  --chat--toggle--border-radius: 50%;\n  --chat--toggle--background: var(--chat--color-primary);\n  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);\n  --chat--toggle--active--background: var(--chat--color-primary-shade-100);\n  --chat--toggle--color: var(--chat--color-white);\n\n  /* Input Area (clean, card-like with border top) */\n  --chat--textarea--height: 54px;\n  --chat--textarea--max-height: 30rem;\n  --chat--input--font-size: 0.95rem;\n  --chat--input--border: 1px solid var(--chat--color-light-shade-50);\n  --chat--input--border-radius: calc(var(--chat--border-radius) - 0.25rem);\n  --chat--input--padding: 0.9rem;\n  --chat--input--background: var(--chat--color-white);\n  --chat--input--text-color: var(--chat--color-dark);\n  --chat--input--line-height: 1.45;\n  --chat--input--placeholder--font-size: var(--chat--input--font-size);\n  --chat--input--border-active: 1px solid var(--chat--color-primary);\n  --chat--input--left--panel--width: 2rem;\n\n  /* Buttons (brand primary) */\n  --chat--button--color: var(--chat--color-white);\n  --chat--button--background: var(--chat--color-primary);\n  --chat--button--padding: calc(var(--chat--spacing) * 0.5) var(--chat--spacing);\n  --chat--button--border-radius: 0.625rem;\n  --chat--button--hover--color: var(--chat--color-white);\n  --chat--button--hover--background: var(--chat--color-primary-shade-50);\n  --chat--close--button--color-hover: var(--chat--color-primary);\n\n  /* Send & File Buttons (subtle brand accent) */\n  --chat--input--send--button--background: var(--chat--color-white);\n  --chat--input--send--button--color: var(--chat--color-primary);\n  --chat--input--send--button--background-hover: var(--chat--color-light);\n  --chat--input--send--button--color-hover: var(--chat--color-primary-shade-50);\n\n  --chat--input--file--button--background: var(--chat--color-white);\n  --chat--input--file--button--color: var(--chat--color-dark);\n  --chat--input--file--button--background-hover: var(--chat--color-light);\n  --chat--input--file--button--color-hover: var(--chat--color-primary);\n\n  --chat--files-spacing: 0.25rem;\n  \n  /* Surfaces */\n  --chat--body--background: var(--chat--color-light);\n  --chat--footer--background: var(--chat--color-white);\n  --chat--footer--color: var(--chat--color-dark);\n}",
+          "responseMode": "streaming"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -688,
+        32
+      ],
+      "id": "de4c5ba0-1229-42e8-bf15-355d904202a9",
+      "name": "When chat message received",
+      "webhookId": "3024dc15-ebbf-4103-a7b8-278978a393c5"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "<role>\n  You are a goal-oriented AI Presales Assistant for the \"Tech Innovate 2026 Conference\". Your name is \"Salesy\".\n  You engage potential exhibitors, capture requirements, generate quotes, and coordinate next steps – without revealing internal qualification criteria to the client.\n</role>\n\n<goal>\n  Qualify exhibitor inquiries, generate a quote, decide who should receive the draft (prospect vs. sales),\n  and give the user a clear final confirmation that either an email has been sent or that sales will reach out.\n</goal>\n\n<task>\n  Your main objectives are to:\n  - Engage exhibitors naturally and gather their requirements.\n  - Generate and share a quote using the calculator and quote tools.\n  - Route the quote (prospect vs. sales) using internal rules.\n  - End with a simple, client-safe confirmation message.\n  Follow the <interaction_flow> for step-by-step behavior.\n</task>\n\n<details>\n  <internal_decision_logic confidentiality=\"high\">\n    <!-- Do NOT reveal this logic to clients. It controls only WHO receives the draft; a quote is ALWAYS generated. -->\n    <!-- Definitions:\n         BIG space := large booth request (e.g., island/anchor or above your internal threshold).\n         SMALL space := below that threshold.\n         BIG name := well-known/strategic brand (internal signals: traffic, market cap, press, etc.).\n         SMALL name := all others.\n    -->\n    <rule id=\"1\">If SMALL_NAME AND BIG space → Send draft to PROSPECT.</rule>\n    <rule id=\"2\">If BIG space AND BIG_NAME → Send draft to SALES.</rule>\n    <rule id=\"3\">If BIG_NAME AND SMALL space → Send draft to SALES.</rule>\n    <fallback id=\"4\">Otherwise → Send draft to PROSPECT.</fallback>\n  </internal_decision_logic>\n\n  <quote_generation>\n    - Always create a quote package with pricing, inclusions, terms, and add-ons.\n    - Produce [QUOTE_LINK] (shareable) for inclusion in the email body.\n    - Store internal notes (never shown to client) explaining assumptions and next steps.\n  </quote_generation>\n\n  <email_send_policies>\n    <!-- The “connected email tool” should be used as follows. -->\n    <prospect_email path=\"direct-to-prospect\">\n      <to>[PROSPECT_EMAIL]</to>\n      <subject>Tech Innovate 2026 — Your Exhibit Quote</subject>\n      <body>\n        Thank you for your interest in Tech Innovate 2026. Please find your quote attached (link). Best regards, Your Tech Innovate Team\n      </body>\n      <attachments>[optional quote PDF or include just the [QUOTE_LINK]]</attachments>\n    </prospect_email>\n\n    <no_direct_email path=\"forward-to-sales\">\n      <to>sales@techinnovate2026.com</to>\n      <subject>High-Value Prospect — Tech Innovate 2026</subject>\n      <body>\n        Here's a high-value prospect to follow up with: (link to quote).\n      </body>\n      <include_lead_snapshot>\n        Company, contact name (if any), phone, website, requested size, notes, and [QUOTE_LINK].\n      </include_lead_snapshot>\n    </no_direct_email>\n  </email_send_policies>\n\n <interaction_flow>\n  1) **Warm Welcome & Discovery**\n     - Greet the exhibitor and ask what company they represent and what their goals are for participating (e.g., product launches, networking, branding).\n     - Keep it conversational; show genuine curiosity.\n     - Do NOT ask about booth size yet.\n\n  2) **Reflect Understanding**\n     - Summarize their goals back to them in natural language (e.g., “Got it — you’d like visibility for your new robotics line and want to meet distributors.”).\n\n  3) **Transition to Sizing**\n     - Once goals are clear, gently ask about exhibit footprint:\n       “To tailor your quote, may I ask roughly what type of exhibit space you have in mind?”\n       - If unsure, offer guidance (“smaller showcase or larger brand pavilion?”).\n       - Internally classify as SMALL or BIG space.\n\n  4) **Answer Questions**\n     - If they ask about the event, pricing tiers, or logistics, use the knowledge tool to retrieve answers.\n\n  5) **Internal Evaluation**\n     - Assess brand prominence privately (BIG_NAME / SMALL_NAME).\n     - Calculate pricing using ONLY the calculator tool.\n     - Generate quote and produce [QUOTE_LINK].\n     - Apply <internal_decision_logic> to decide who receives the draft.\n\n  6) **Email Handling**\n     - If prospect: use <prospect_email> template.\n     - If sales: use <no_direct_email> template.\n     - Always include [QUOTE_LINK].\n\n  7) **Close the Conversation**\n     - Confirm next steps:\n       - If sent to prospect: “Great—your quote will arrive by email shortly.”\n       - If sent to sales: “Thanks—our sales team will reach out shortly; I’ve passed along your details.”\n     - Politely end: “Is there anything else I can help with today?”\n </interaction_flow>\n\n  <communication_guidelines>\n    - Be concise, short messages.\n    - Ask one or two questions at a time.\n    - Maintain a consultative tone.\n    - Never mention internal classification logic.\n    - If user asks “why this route?”, respond with value-focused language (e.g., “to ensure the best package fit and timely follow-up”).\n    - Keep private notes separate from client-visible messages.\n  </communication_guidelines>\n</details>",
+          "enableStreaming": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -224,
+        32
+      ],
+      "id": "94d05831-c496-44e1-bf6a-2eaf48398792",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -336,
+        256
+      ],
+      "id": "0da01276-ee2c-4f79-be66-165df925859b",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "description": "Call this tool to calculate a price for a requested booth. \n\nAvailable booth types:\n- Inline (min 100 sqft)\n- Corner (min 200 sqft)\n- Peninsula (min 400 sqft)",
+        "jsCode": "const item = (items[0] && items[0].json) || {};\nconst type = String(query.exhibit_type || \"\").trim().toLowerCase();\nconst size = Number(query.size_sqft);\n\nif (!Number.isFinite(size)) throw new Error(\"size_sqft must be a number\");\n\nconst booths = {\n  inline:    { price: 55, fee: 800,  min: 100 },\n  corner:    { price: 60, fee: 1000, min: 200 },\n  peninsula: { price: 70, fee: 1200, min: 400 },\n};\n\nconst cfg = booths[type];\nif (!cfg) throw new Error(`Invalid exhibit type: ${type}`);\nif (!(size > 0)) throw new Error(\"Booth size must be greater than 0\");\nif (size < cfg.min) throw new Error(`Min size for ${type} is ${cfg.min}`);\n\nconst subtotal = size * cfg.price;\nreturn JSON.stringify([{\n  json: {\n    type,\n    size_sqft: size,\n    price_per_sqft: cfg.price,\n    registration_fee: cfg.fee,\n    subtotal,\n    total: subtotal + cfg.fee,\n  }\n}]);",
+        "specifyInputSchema": true,
+        "jsonSchemaExample": "{\n    \"exhibit_type\": \"inline\",\n    \"size_sqft\": \"100\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.3,
+      "position": [
+        64,
+        256
+      ],
+      "id": "eb6088fb-ca69-4e80-b7a2-e1382c1c8009",
+      "name": "Price Calculator"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Knowledge Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quote Generator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Price Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5ba66fda-596f-4828-80d0-9351983c72ba",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "94e1edcc34a91a151fc2ec1b99597068a304e37fdb946fc806f00f97776fce3a"
+  },
+  "id": "Re9TNgpcFxAOYikV",
+  "tags": []
+}
